@@ -4,6 +4,7 @@ title: "Kotlin makes project"
 subtitle: "Development Date :: about three months "
 date: 2020-12-22 00:17:00 +0900
 background: "/img/posts/06.jpg"
+categories: ["development", "kotlin"]
 ---
 
 # Kotlin App Portfolio
