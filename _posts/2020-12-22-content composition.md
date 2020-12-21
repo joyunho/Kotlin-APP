@@ -8,8 +8,6 @@ background: "/img/posts/06.jpg"
 
 # Kotlin App Portfolio
 
-<br>
-
 ## My idea
 
 1. Beat sharing app
@@ -27,7 +25,6 @@ background: "/img/posts/06.jpg"
 ## How to manage source code
 
 1. Git hub + blog
-   <br>
 
 ## Project design
 
@@ -39,7 +36,6 @@ background: "/img/posts/06.jpg"
 
 1. Utilize notion program
 2. Write daily developments on github in advance
-   <br>
 
 ## Deploy project
 
