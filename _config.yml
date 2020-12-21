@@ -3,7 +3,7 @@ email: whdbsgh00@naver.com
 description: Development App
 author: JoYunHo
 baseurl: ""
-url: https://joyunho.github.io
+url: "https://joyunho.github.io"
 
 # Social Profiles
 #twitter_username:   SBootstrap
