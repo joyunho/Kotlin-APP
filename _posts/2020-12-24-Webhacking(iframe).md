@@ -20,6 +20,6 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
 | :---------: | :---------: | :---------: |
 | 연결할 주소 | 출력할 크기 | 출력할 크기 |
 
-!(ParamUrl)(C:\Users\whdbs\OneDrive\바탕 화면\WEB HACKING\사진\iframe rebots)
+![ParamUrl](C:\Users\whdbs\OneDrive\바탕 화면\WEB HACKING\사진\iframe rebots.png)
 ==> ParamUrl 변수의 값 == rebot.txt
 (이 변수에 입력한 내용이 iframe 태그에 추가)
