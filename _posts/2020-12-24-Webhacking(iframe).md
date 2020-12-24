@@ -26,4 +26,4 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
 
 ![ParamUrl](./img/Webhacking/iframe 공격용 HTML.PNG)
 ==> iframe 태그로 사용자 모르게 악의적인 HTML페이지를 출력하는
-공격을 하기 위해 HTML 페이지 작성
+공격을 하기 위해 HTML 페이지 작성 zz
