@@ -37,6 +37,7 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
   &ParamWidth=250&ParamHeight=250"
 
 ![iframe 공격 성공(low)](https://user-images.githubusercontent.com/76092057/103058882-be27b500-45e6-11eb-980f-249c14e9c859.PNG)
+
 ==> 공격 성공
 
 # 사용자 몰래 iframe 인젝션 공격을 하는 방법
@@ -53,3 +54,25 @@ iframe의 'width' 속성과 'height'속성을 0으로 수정한다.
 즉, iframe인젝션을 막기 위해서는 htmlspecialchars 함수를   
 사용하여 웹브라우저에서 iframe 태그에 사용되는 문자들을   
 HTML 태그로 해석 하지 않게 입력 데이터를 UTF-8로 인코딩한다.
+
+OS 커맨드 인젝션
+===============
+취약한 변수로 시스템 명령어를 주입하여 서버 운영체제에 접근하는 공격   
+보통 웹 페이지에서 서버의 시스템 셸을 호출할 떄 관리자가 의도한 명령어
+가 아닌 다른 명령어를 주입하여 서버 정보를 알아낸다.
+<br>
+==> 파이프라인은 둘 이상의 명령어를 실행할 때 사용하며 앞의 명령어를
+실행한 후 파이프라인 뒤에 있는 명령어를 실행한다.
+
+![파이프 라인을 이용한 os 커맨드 인젝션 공격](https://user-images.githubusercontent.com/76092057/103061335-6725de00-45ee-11eb-8126-a44ae3f4a22c.PNG)
+
+==> 공격 성공
+# Netcat 실습 실패(추후 추가 예정)
+
+PHP 코드 인젝션
+==============
+PHP에서 exec() 함수나 eval() 함수를 사용한 경우 세미콜론(;)
+을 사용하여 다른 함수를 실행한다는 취약점이 있다.   
+취약점이 있는지 파악하려면 세미 콜론과 system함수를 사용한다.
+
+![PHP 인젝션 whoami 명령어](https://user-images.githubusercontent.com/76092057/103061195-e2d35b00-45ed-11eb-8a5b-df356041277a.PNG)
