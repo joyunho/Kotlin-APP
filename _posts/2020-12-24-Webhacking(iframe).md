@@ -20,9 +20,9 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
 | :---------: | :---------: | :---------: |
 | 연결할 주소 | 출력할 크기 | 출력할 크기 |
 
-![ParamUrl]("./img/posts/04.jpg")
+![ParamUrl](./img/posts/04.jpg)
 ==> ParamUrl 변수의 값 == rebot.txt
-(이 변수에 입력한 내용이 iframe 태그에 추가)zz zz
+(이 변수에 입력한 내용이 iframe 태그에 추가)
 
 ![ParamUrl](./img/Webhacking/iframe 공격용 HTML.PNG)
 ==> iframe 태그로 사용자 모르게 악의적인 HTML페이지를 출력하는
