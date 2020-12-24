@@ -69,6 +69,14 @@ OS 커맨드 인젝션
 ==> 공격 성공
 # Netcat 실습 실패(추후 추가 예정)
 
+대응방안
+-------
+![os 커맨드 인젝션 대응방안](https://user-images.githubusercontent.com/76092057/103061561-12369780-45ef-11eb-94d6-52ac564ccc1a.PNG)
+
+==> 시스템 명령어를 외부에서 사용하지 못하도록 하는게 가장 좋지만, 
+부득이하게 시스템 명령어를 사용하여야 할 경우에는 필요한 명령어
+이외에 다른 명령어를 사용할 수 없도록 '&, ;, |" 문자를 우회한다.
+
 PHP 코드 인젝션
 ==============
 PHP에서 exec() 함수나 eval() 함수를 사용한 경우 세미콜론(;)
@@ -76,3 +84,41 @@ PHP에서 exec() 함수나 eval() 함수를 사용한 경우 세미콜론(;)
 취약점이 있는지 파악하려면 세미 콜론과 system함수를 사용한다.
 
 ![PHP 인젝션 whoami 명령어](https://user-images.githubusercontent.com/76092057/103061195-e2d35b00-45ed-11eb-8a5b-df356041277a.PNG)
+==> 다른 명령어를 사용하여 공격 
+(but, 상위 권한의 사용자만 접근할 수 있는 파일인 경우에는 
+결과를 출력하지않는다.)
+
+# Netcat 실습 실패(추후 추가 예정)
+
+대응방안
+-------
+![PHP 인젝션 대응 방안](https://user-images.githubusercontent.com/76092057/103061932-0f887200-45f0-11eb-916d-e41f1b33534f.PNG)
+==> htmlspecialchars 함수는 두 번쨰 인자에 'ENT _QUOTES'를 
+추가하여 크로스 사이트 스크립팅에 사용되는 특수 문자들을
+HTML 엔티티 코드로 변환한다.
+
+SSI 인젝션
+=========
+SSI는 HTML 페이지의 전체 코드를 수정하지 않고 공통 모듈 파일로
+관리하며 동적인 내용을 추가하기 위하여 만들어진 기능이다.
+SSI를 사용하는 웹 페이지의 경우 SSI지시어를 처리하기 위한
+'.shtml' 확장자 파일을 생성한다.
+
+![SSI 기능 확인](https://user-images.githubusercontent.com/76092057/103062141-b53be100-45f0-11eb-8eea-25b37529f6f2.PNG)
+==> 'ssii.shtml'페이지를 호출하는데, 이 페이지로 웹페이지에서
+SSI 기능을 사용한다는 사실을 파악 가능
+
+![ssi 명령어 실행 결과](https://user-images.githubusercontent.com/76092057/103062481-9f7aeb80-45f1-11eb-89ae-2810a1210ea0.PNG)
+==> <!--#echo var="DATE_LOCAL" --> 명령어 입력 결과
+
+![ssi 공격 성공 2](https://user-images.githubusercontent.com/76092057/103062570-ee288580-45f1-11eb-93c3-2d4e745896a2.PNG)
+==> <!--#exec cmd="cat /etc/passwd" --> 명령어 입력 결과
+
+# Netcat 실습 실패(추후 추가 예정)
+
+대응방안
+-------
+![ssi 대응방안](https://user-images.githubusercontent.com/76092057/103062767-99d1d580-45f2-11eb-8c4a-1d1c9d53ba91.PNG)
+==> htmlspecialchars함수는 두 번째 인자에 "ENT_QUOTES'를 추가
+하였는데, XSS에 사용되는 특수 문자들을 HTML 엔티티 코드로 변환한
+후 입력하여도 웹브라우저에서는 문자로 인식한다.
