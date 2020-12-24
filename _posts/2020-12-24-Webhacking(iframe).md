@@ -20,7 +20,8 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
 | :---------: | :---------: | :---------: |
 | 연결할 주소 | 출력할 크기 | 출력할 크기 |
 
-![ParamUrl](./img/posts/04.jpg)
+
+![dd](./img/posts/04.jpg)
 ==> ParamUrl 변수의 값 == rebot.txt
 (이 변수에 입력한 내용이 iframe 태그에 추가)
 
