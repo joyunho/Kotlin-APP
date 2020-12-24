@@ -47,7 +47,8 @@ iframe의 'width' 속성과 'height'속성을 0으로 수정한다.
 
 대응 방안
 --------
-![iframe 대응방식](https://user-images.githubusercontent.com/76092057/103059292-0693a280-45e8-11eb-94e4-a19c1896e955.PNG)
+![iframe 대응방식](https://user-images.githubusercontent.com/76092057/103059292-0693a280-45e8-11eb-94e4-a19c1896e955.PNG)   
+
 ==>xss_check_3함수로 입력 데이터를 우회한다.<br>
 즉, iframe인젝션을 막기 위해서는 htmlspecialchars 함수를   
 사용하여 웹브라우저에서 iframe 태그에 사용되는 문자들을   
