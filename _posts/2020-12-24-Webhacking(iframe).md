@@ -22,21 +22,21 @@ ifram은 HTML 문서 안에서 또 다른 HTML 문서를 출력하는 태그,
 | 연결할 주소 | 출력할 크기 | 출력할 크기 |
 
 
-![iframe rebots](https://user-images.githubusercontent.com/76092057/103058414-6dfc2300-45e5-11eb-9386-0c0d39197003.PNG)
+![iframe rebots](https://user-images.githubusercontent.com/76092057/103058414-6dfc2300-45e5-11eb-9386-0c0d39197003.PNG){: width="100%" height="100%"}
 ==> ParamUrl 변수의 값 == rebot.txt
 (이 변수에 입력한 내용이 iframe 태그에 추가)
 
-![iframe 공격용 HTML](https://user-images.githubusercontent.com/76092057/103058468-94ba5980-45e5-11eb-89e9-652abd6f1709.PNG)
+![iframe 공격용 HTML](https://user-images.githubusercontent.com/76092057/103058468-94ba5980-45e5-11eb-89e9-652abd6f1709.PNG){: width="100%" height="100%"}
 ==> iframe 태그로 사용자 모르게 악의적인 HTML페이지를 출력하는
 공격을 하기 위해 HTML 페이지 작성
 
-![iframe 기존 URl](https://user-images.githubusercontent.com/76092057/103058537-c4696180-45e5-11eb-832e-cc0e97874c05.PNG)
+![iframe 기존 URl](https://user-images.githubusercontent.com/76092057/103058537-c4696180-45e5-11eb-832e-cc0e97874c05.PNG){: width="100%" height="100%"}
 ==> 기존 URL에 bad.htm페이지를 iframe의 src속성에 입력
 - "http://192.168.56.104/bWAPP/iframei.php?ParamUrl=robots.txt">   
   </iframe><iframe src="bad.html" width="250" height="250"></iframe>
   &ParamWidth=250&ParamHeight=250"
 
-![iframe 공격 성공(low)](https://user-images.githubusercontent.com/76092057/103058882-be27b500-45e6-11eb-980f-249c14e9c859.PNG)
+![iframe 공격 성공(low)](https://user-images.githubusercontent.com/76092057/103058882-be27b500-45e6-11eb-980f-249c14e9c859.PNG){: width="100%" height="100%"}
 
 ==> 공격 성공
 
@@ -48,7 +48,7 @@ iframe의 'width' 속성과 'height'속성을 0으로 수정한다.
 
 대응 방안
 --------
-![iframe 대응방식](https://user-images.githubusercontent.com/76092057/103059292-0693a280-45e8-11eb-94e4-a19c1896e955.PNG)   
+![iframe 대응방식](https://user-images.githubusercontent.com/76092057/103059292-0693a280-45e8-11eb-94e4-a19c1896e955.PNG)   {: width="100%" height="100%"}
 
 ==>xss_check_3함수로 입력 데이터를 우회한다.<br>
 즉, iframe인젝션을 막기 위해서는 htmlspecialchars 함수를   
@@ -64,14 +64,14 @@ OS 커맨드 인젝션
 ==> 파이프라인은 둘 이상의 명령어를 실행할 때 사용하며 앞의 명령어를
 실행한 후 파이프라인 뒤에 있는 명령어를 실행한다.
 
-![파이프 라인을 이용한 os 커맨드 인젝션 공격](https://user-images.githubusercontent.com/76092057/103061335-6725de00-45ee-11eb-8126-a44ae3f4a22c.PNG)
+![파이프 라인을 이용한 os 커맨드 인젝션 공격](https://user-images.githubusercontent.com/76092057/103061335-6725de00-45ee-11eb-8126-a44ae3f4a22c.PNG){: width="100%" height="100%"}
 
 ==> 공격 성공
 # Netcat 실습 실패(추후 추가 예정)
 
 대응방안
 -------
-![os 커맨드 인젝션 대응방안](https://user-images.githubusercontent.com/76092057/103061561-12369780-45ef-11eb-94d6-52ac564ccc1a.PNG)
+![os 커맨드 인젝션 대응방안](https://user-images.githubusercontent.com/76092057/103061561-12369780-45ef-11eb-94d6-52ac564ccc1a.PNG){: width="100%" height="100%"}
 
 ==> 시스템 명령어를 외부에서 사용하지 못하도록 하는게 가장 좋지만, 
 부득이하게 시스템 명령어를 사용하여야 할 경우에는 필요한 명령어
@@ -83,7 +83,7 @@ PHP에서 exec() 함수나 eval() 함수를 사용한 경우 세미콜론(;)
 을 사용하여 다른 함수를 실행한다는 취약점이 있다.   
 취약점이 있는지 파악하려면 세미 콜론과 system함수를 사용한다.
 
-![PHP 인젝션 whoami 명령어](https://user-images.githubusercontent.com/76092057/103061195-e2d35b00-45ed-11eb-8a5b-df356041277a.PNG)
+![PHP 인젝션 whoami 명령어](https://user-images.githubusercontent.com/76092057/103061195-e2d35b00-45ed-11eb-8a5b-df356041277a.PNG){: width="100%" height="100%"}
 ==> 다른 명령어를 사용하여 공격 
 (but, 상위 권한의 사용자만 접근할 수 있는 파일인 경우에는 
 결과를 출력하지않는다.)
@@ -92,7 +92,7 @@ PHP에서 exec() 함수나 eval() 함수를 사용한 경우 세미콜론(;)
 
 대응방안
 -------
-![PHP 인젝션 대응 방안](https://user-images.githubusercontent.com/76092057/103061932-0f887200-45f0-11eb-916d-e41f1b33534f.PNG)
+![PHP 인젝션 대응 방안](https://user-images.githubusercontent.com/76092057/103061932-0f887200-45f0-11eb-916d-e41f1b33534f.PNG){: width="100%" height="100%"}
 ==> htmlspecialchars 함수는 두 번쨰 인자에 'ENT _QUOTES'를 
 추가하여 크로스 사이트 스크립팅에 사용되는 특수 문자들을
 HTML 엔티티 코드로 변환한다.
@@ -104,11 +104,11 @@ SSI는 HTML 페이지의 전체 코드를 수정하지 않고 공통 모듈 파�
 SSI를 사용하는 웹 페이지의 경우 SSI지시어를 처리하기 위한
 '.shtml' 확장자 파일을 생성한다.
 
-![SSI 기능 확인](https://user-images.githubusercontent.com/76092057/103062141-b53be100-45f0-11eb-8eea-25b37529f6f2.PNG)
+![SSI 기능 확인](https://user-images.githubusercontent.com/76092057/103062141-b53be100-45f0-11eb-8eea-25b37529f6f2.PNG){: width="100%" height="100%"}
 ==> 'ssii.shtml'페이지를 호출하는데, 이 페이지로 웹페이지에서
 SSI 기능을 사용한다는 사실을 파악 가능
 
-![ssi 명령어 실행 결과](https://user-images.githubusercontent.com/76092057/103062481-9f7aeb80-45f1-11eb-89ae-2810a1210ea0.PNG)
+![ssi 명령어 실행 결과](https://user-images.githubusercontent.com/76092057/103062481-9f7aeb80-45f1-11eb-89ae-2810a1210ea0.PNG){: width="100%" height="100%"}
 ==> <!--#echo var="DATE_LOCAL" --> 명령어 입력 결과
 
 ![ssi 공격 성공 2](https://user-images.githubusercontent.com/76092057/103062570-ee288580-45f1-11eb-93c3-2d4e745896a2.PNG){: width="100%" height="100%"}
