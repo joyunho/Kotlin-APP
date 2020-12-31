@@ -118,7 +118,7 @@ SSI 기능을 사용한다는 사실을 파악 가능
 
 대응방안
 -------
-![ssi 대응방안](https://user-images.githubusercontent.com/76092057/103062767-99d1d580-45f2-11eb-8c4a-1d1c9d53ba91.PNG)
+![ssi 대응방안](https://user-images.githubusercontent.com/76092057/103062767-99d1d580-45f2-11eb-8c4a-1d1c9d53ba91.PNG){: width="100%" height="100%"}
 ==> htmlspecialchars함수는 두 번째 인자에 "ENT_QUOTES'를 추가
 하였는데, XSS에 사용되는 특수 문자들을 HTML 엔티티 코드로 변환한
 후 입력하여도 웹브라우저에서는 문자로 인식한다.
