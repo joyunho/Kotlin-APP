@@ -111,7 +111,7 @@ SSI 기능을 사용한다는 사실을 파악 가능
 ![ssi 명령어 실행 결과](https://user-images.githubusercontent.com/76092057/103062481-9f7aeb80-45f1-11eb-89ae-2810a1210ea0.PNG)
 ==> <!--#echo var="DATE_LOCAL" --> 명령어 입력 결과
 
-![ssi 공격 성공 2](https://user-images.githubusercontent.com/76092057/103062570-ee288580-45f1-11eb-93c3-2d4e745896a2.PNG)
+![ssi 공격 성공 2](https://user-images.githubusercontent.com/76092057/103062570-ee288580-45f1-11eb-93c3-2d4e745896a2.PNG){: width="100%" height="100%"}
 ==> <!--#exec cmd="cat /etc/passwd" --> 명령어 입력 결과
 
 # Netcat 실습 실패(추후 추가 예정)
