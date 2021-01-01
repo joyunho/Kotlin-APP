@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lotto app development(1)"
-subtitle: "2021-01-01(main ACtivity Category)"
+subtitle: "2021-01-01(Main Activity Category)"
 date: 2021-01-01 21:12:00 +0900
 background: "/img/posts/01.jpg"
 categories: ["development"]
@@ -22,11 +22,12 @@ RESULT ACTIVITY
 
 3. 먼저 MAIN ACTIVITY 버튼을 눌렀을 때 View를 만들기로 했다. 목차로는
 "랜덤으로 번호 생성" // "별자리로 번호 생성" // "이름으로 번호 생성" 이 있다.
-또한 'clickable' 속성을 이용하여 Click 이벤트를 설계
+또한 'clickable' 속성을 이용하여 Click 이벤트를 설계<br>
 
 ***
+<br>
 
-```kotlin
+```java
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
