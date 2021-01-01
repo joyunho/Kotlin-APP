@@ -34,7 +34,20 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 2. ' or 1=1#
 
 ![SQL 쿼리 성공](https://user-images.githubusercontent.com/76092057/103432134-25182000-4c1e-11eb-8cab-69f34d819943.PNG){: width:"100%" height:"100%"}
-@@ 결과 :: 첫번째 쿼리에서는 오류가 뜨고 두번째 쿼리는 모든 영화 자료가 출력된다.
+@@ 결과 :: 첫번째 쿼리에서는 오류, 두번째 쿼리는 모든 영화 자료가 출력된다.
+
+
+* 더 자세한 정보를 알아내기 위해 UNION SELECT 구문을 사용<br>
+==> UNION :: SELECT 문이 둘 이상일 때 이를 결합하여 두 질의의 결과를
+하나로 반환한다. (UNION Based SQL Injection)
+
+> UNION SELECT ALL 1# <br>
+==> UNION 구문을 사용하기 위해서는 SELECT 문의 칼럼수가 일치해야함
+> ' UNION SELECT ALL 1,2,3,4,5,6,7# <br>
+==> 칼럼을 계속 추가하여 확인
+![SQL 인젝션 UNION 문](https://user-images.githubusercontent.com/76092057/103432258-b340d600-4c1f-11eb-9645-821ad117feab.PNG){: width:"100%" height:"100%"}
+> 0' UNION SELECT ALL 1,@@version,3,4,5,6,7# <br>
+==> MySQL 버전을 확인하기 위하여 시스템 변수나 시스템 함수를 활용하여 쿼리 입력
 
 
 
