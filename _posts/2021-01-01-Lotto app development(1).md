@@ -175,4 +175,4 @@ RESULT ACTIVITY
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
-'''
+```
