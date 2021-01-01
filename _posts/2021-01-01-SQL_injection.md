@@ -59,6 +59,7 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 
 * information_schema를 사용하여 테이블 명을 확인
   > 0' UNION SELECT ALL 1,table_name,3,4,5,6,7 from information_schema.tables# 
+
 ![SQL 인젝션 모든 테이블명](https://user-images.githubusercontent.com/76092057/103432398-81c90a00-4c21-11eb-842a-f34de5eb7b17.PNG){: width:"100%" height:"100%"}
 
 * 출력한 정보를 토대로 users 테이블에 사용자 계정 정보가 들어있음을 추측, 
@@ -79,6 +80,53 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 PHP 기본 제공 함수인 mysql_real_escape_strings 함수를 사용하여 입력한 데이터를
 우회한다. 이때 이 함수는 사용자 입력 값에 SQL 문법에서 사용하는 특수문자가 있을 경우
 백슬래시를 붙여 입력 데이터를 SQl 문법으로 인식하지 않게 방어한다.
+
+***
+### POST/Search
+
+==> 'sqli_6.php' 페이지는 POST 메서드로 HTTP 연결 요청을 보내고 있어서 sqli_1.php
+페이지와는 다르게 URL에 변수가 나타나지 않는다. <br>
+하지만 검색란에 사용되는 변수가 취약하다는 것은 전과 동일하다.
+
+* Burp Suite를 사용하여 body에 실린 'title'과 'action'변수 둘 다 SQL인젝션 공격
+  >title='&action=search
+
+![SQL 인젝션 POST 버프스위트](https://user-images.githubusercontent.com/76092057/103433362-2738a980-4c33-11eb-8ef4-bab83ce1f78b.PNG){: width:"100%" height:"100%"}
+
+* title 변수에 작은따옴표를 입력할 시 오류 메세지 출력, action 변수에 작은따옴표를 
+  입력하면 오류메세지 x, 즉 SQL 인젝션에 취약한 변수는 title임을 알 수 있다.
+
+![SQL 인젝션 POST 취약한 변수](https://user-images.githubusercontent.com/76092057/103433380-741c8000-4c33-11eb-940d-1fd96b7a2fa9.PNG){: width:"100%" height:"100%"}
+
+* title 변수에 결과를 항상 참으로 만드는 구문 입력
+  1. ' or 1=1--
+  2. ' or 1=1#
+
+@@ 1번 결과 :: 버전과 맞지 안흔 문법 오류 (주석문자는 '--'는 주석 기능을 하지 못한다.)
+
+![SQL 인젝션 POST 주석문자](https://user-images.githubusercontent.com/76092057/103433466-9d89db80-4c34-11eb-89e2-9857c2d6a462.PNG){: width:"100%" height:"100%"}
+
+@@ 2번 결과 :: 킬럼 수가 맞지 않는다는 오류
+
+![SQL 인젝션 POST 주석문자 #](https://user-images.githubusercontent.com/76092057/103433512-74b61600-4c35-11eb-9256-219c52c7a1c2.PNG){: width:"100%" height:"100%"}
+
+
+* 칼럼수를 확인하고 페이지에서 확인되지 않는 칼럼을 찾고, 데이터베이스의 버전을 확인한다
+  > title=0' UNION SELECT ALL 1,2,3,4,5,6,7#action=search
+  > 0' UNIKON SELECT 1,@@version,3,4,5,6,7#
+
+![SQL 인젝션 POST 칼럼 확인](https://user-images.githubusercontent.com/76092057/103433559-4422ac00-4c36-11eb-8df5-8d66cebd64a0.PNG){: width:"100%" height:"100%"}
+
+@@ 결과 :: 1,5,7 번째에 있는 칼럼은 페이지에서 확인 x
+
+![SQL 인젝션 POST 버전 확인](https://user-images.githubusercontent.com/76092057/103433569-8a780b00-4c36-11eb-8651-788d259ffe67.PNG)
+
+@@ 결과 :: MySQL 버전 5.0.96
+
+
+
+
+
 
 
 
