@@ -2,7 +2,7 @@
 layout: post
 title: "Lotto app development(1)"
 subtitle: "2021-01-01(main ACtivity Category)"
-date: 2020-01-01 21:12:00 +0900
+date: 2021-01-01 21:12:00 +0900
 background: "/img/posts/01.jpg"
 categories: ["development"]
 ---
