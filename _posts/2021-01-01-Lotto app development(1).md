@@ -25,13 +25,11 @@ RESULT ACTIVITY
 또한 'clickable' 속성을 이용하여 Click 이벤트를 설계<br>
 
 ***
-<br>
 
 완성된 레이아웃 XML 코드
 =======================
 
 {% raw %}
-```java
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -177,5 +175,4 @@ RESULT ACTIVITY
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
-```
 {% endraw %}
