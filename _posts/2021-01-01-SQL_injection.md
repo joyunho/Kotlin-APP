@@ -17,7 +17,7 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 ### GET/Search
 
 * SQL 인젝션이 가능한지 확인
-> SELECT * FROM movies WHERE title LIKE ' ' ' <br>
+  > SELECT * FROM movies WHERE title LIKE ' ' ' <br>
 ==> ' 를 사용하는 이유 <br> :: 데이터베이스에서 작음따옴표로 문자데이터를
                               구분하기 떄문이다.
 
@@ -52,6 +52,7 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 ==> MySQL 버전을 확인하기 위하여 시스템 변수나 시스템 함수를 활용하여 쿼리 입력,
 페이지에 노출되는 칼럼은 2,3,4,5번에 위치함으로 이중 하나에 시스템 변수를 삽입
 ![SQL 인젝션 MySQL 버전 확인](https://user-images.githubusercontent.com/76092057/103432327-7aedc780-4c20-11eb-921d-2365db1547a9.PNG){: width:"100%" height:"100%"}
+
 @@ 버전 : 5.0.96
 
 * information_schema를 사용하여 테이블 명을 확인
