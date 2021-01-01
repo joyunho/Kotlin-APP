@@ -75,6 +75,11 @@ SQL 인젝션은 사용자가 데이터를 입력할 수 있는 곳 어디에서
 ### 대응방안
 ![SQL 인젝션 대응방안(GET)](https://user-images.githubusercontent.com/76092057/103432541-c48be180-4c23-11eb-94c6-e6550a3c8d61.PNG){: width:"100%" height:"100%"}
 
+작은따옴표(')를 입력하여도 오류 메세지가 나오지 않으면 SQL Injection 이 불가능하다.
+PHP 기본 제공 함수인 mysql_real_escape_strings 함수를 사용하여 입력한 데이터를
+우회한다. 이때 이 함수는 사용자 입력 값에 SQL 문법에서 사용하는 특수문자가 있을 경우
+백슬래시를 붙여 입력 데이터를 SQl 문법으로 인식하지 않게 방어한다.
+
 
 
 
