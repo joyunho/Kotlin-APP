@@ -29,8 +29,8 @@ RESULT ACTIVITY
 완성된 레이아웃 XML 코드
 =======================
 
-```
 {% raw %}
+```java
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -177,4 +177,3 @@ RESULT ACTIVITY
 
 </LinearLayout>
 {% endraw %}
-```
