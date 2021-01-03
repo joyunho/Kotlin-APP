@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lotto app development(2)"
-subtitle: "2021-01-03(별자리 검색)
+subtitle: "2021-01-03(별자리 검색)"
 background: "/img/posts/02.jpg"
 categories: ["development"]
 ---
