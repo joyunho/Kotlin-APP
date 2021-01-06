@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Lotto app development(3)"
+title: "Lotto app development(4)"
 subtitle: "2021-01-05(이름 검색)"
 background: "/img/posts/03.jpg"
-date: 2021-01-01 17:03:00 +0900
+date: 2021-01-05 18:03:00 +0900
 categories: ["development"]
 ---
 
