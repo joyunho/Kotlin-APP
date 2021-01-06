@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Lotto app development(5)"
-subtitle: "2021-01-05(난수 생성)"
+subtitle: "2021-01-06(난수 생성)"
 background: "/img/posts/04.jpg"
 date: 2021-01-06 23:26:00 +0900
 categories: ["development"]
