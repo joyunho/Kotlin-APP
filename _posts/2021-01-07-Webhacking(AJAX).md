@@ -112,6 +112,6 @@ Blog
 2. sqli_check_2 함수는 functions_external.php에 정의되어 있고 PHP 기본 제공 함수인 mysql_real_escape_string 함수를 사용하여 입력한 데이터를 우회한다.
 3. mysql_real_escape_string 함수는 사용자 입력 값에 SQL 문법에서 사용하는 특수 문자가 있을 경우 백슬래시를 붙여 입력 데이터를 SQL 문법으로 인식하지 않게 방어한다.
 
-
+123213123123
 
  
